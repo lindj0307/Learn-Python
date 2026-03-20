@@ -28,5 +28,5 @@ while True:
 
     # 判断是否猜对了
     if correct == 4:
-        print("恭喜你，猜对了！")
+        print("恭喜你，猜对了！joey")
         break

@@ -1,23 +1,29 @@
+
 import openai
 import os
+#import openai_secret_manager
 
-# 设置 API 密钥
+# 获取 API 密钥
+#secrets = openai_secret_manager.get_secret("OPENAI_API_KEY")
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-# 输入文本
-prompt = "企业数字化的核心是什么"
-
-
-# 生成文本
+# 调用 OpenAI API
+prompt = "帮我写个IOT的技术规格说明书"
+model = "text-davinci-002"
+temperature = 0.5
+max_tokens = 10
 response = openai.Completion.create(
-    engine="davinci",
+    engine="davinci-002",
     prompt=prompt,
-    temperature=0.7,
-    max_tokens=60,
-    top_p=1,
+    max_tokens=max_tokens,
+    temperature=temperature,
+    model=model,
+    n=1,
+    stop=None,
     frequency_penalty=0,
-    presence_penalty=0
+    presence_penalty=0,
+    response_format="json",
+    turbo=True,
+    use_davinci_3_5=True,
 )
-
-# 输出生成的文本
-print(response["choices"][0]["text"].strip())
+print(response.choices[0].text)
